@@ -1,0 +1,15 @@
+{
+  "v": 1,
+  "id": "1794947903299-ada-ohus",
+  "at": "2026-11-17T20:38:23.299Z",
+  "by": "ada",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "item.add",
+  "ref": "t-dz53",
+  "title": "Record a backup demo video",
+  "data": {
+    "why": "Wi-Fi at the expo is unreliable",
+    "due": "2027-01-17T06:00-05:00"
+  }
+}

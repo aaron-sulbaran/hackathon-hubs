@@ -1,0 +1,17 @@
+{
+  "v": 1,
+  "id": "1794947904309-ada-hmbj",
+  "at": "2026-11-17T20:38:24.309Z",
+  "by": "ada",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "gate.add",
+  "ref": "g-5c3p",
+  "title": "Submission draft saved",
+  "data": {
+    "criteria": [
+      "Every required field filled"
+    ],
+    "due": "2027-01-17T08:00-05:00"
+  }
+}

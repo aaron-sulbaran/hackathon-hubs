@@ -1,0 +1,16 @@
+{
+  "v": 1,
+  "id": "1794947902564-ada-4zt5",
+  "at": "2026-11-17T20:38:22.564Z",
+  "by": "ada",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "item.add",
+  "ref": "t-c5yj",
+  "title": "Connect your coding agent to the hub",
+  "data": {
+    "why": "Agents coordinate only through the hub; one paste, about five minutes",
+    "owner": "grace",
+    "area": "onboarding"
+  }
+}

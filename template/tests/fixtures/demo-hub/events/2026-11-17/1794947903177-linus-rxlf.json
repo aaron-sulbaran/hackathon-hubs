@@ -1,0 +1,17 @@
+{
+  "v": 1,
+  "id": "1794947903177-linus-rxlf",
+  "at": "2026-11-17T20:38:23.177Z",
+  "by": "linus",
+  "via": "agent",
+  "agent": "cursor",
+  "type": "item.add",
+  "ref": "t-v8im",
+  "title": "Deploy the demo build",
+  "data": {
+    "why": "Judges open a link, not a laptop",
+    "owner": "linus",
+    "lane": "in_flight",
+    "due": "2027-01-17T07:00-05:00"
+  }
+}

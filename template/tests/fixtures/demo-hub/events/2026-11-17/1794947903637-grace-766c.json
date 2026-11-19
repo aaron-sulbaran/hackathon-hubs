@@ -1,0 +1,14 @@
+{
+  "v": 1,
+  "id": "1794947903637-grace-766c",
+  "at": "2026-11-17T20:38:23.637Z",
+  "by": "grace",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "question.settle",
+  "ref": "q-pujt",
+  "title": "Hosted model APIs are allowed in every track",
+  "data": {
+    "answer": "Hosted model APIs are allowed in every track"
+  }
+}

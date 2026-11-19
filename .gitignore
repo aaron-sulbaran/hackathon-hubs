@@ -1,0 +1,13 @@
+node_modules/
+.private/
+.claude/worktrees/
+/.claude/launch.json
+.env
+.env.*
+!.env.example
+.DS_Store
+.vercel/
+.hub-owner.local
+.next/
+dist/
+*.tsbuildinfo

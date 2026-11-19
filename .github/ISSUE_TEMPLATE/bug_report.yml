@@ -1,0 +1,62 @@
+name: Bug report
+description: Something in the hub, the board, or the scaffolder does not work.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Leave out anything private: teammate names, tokens, unlock links, or your team's hub content.
+        A security problem goes through a private report instead: https://github.com/aaron-sulbaran/hackathon-hubs/security/advisories/new
+  - type: dropdown
+    id: part
+    attributes:
+      label: Which part
+      options:
+        - The ./hub command line tool
+        - The web board
+        - ./hub setup
+        - The scaffolder (create-hackathon-hub)
+        - The docs
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: Paste the command you ran and its output, or describe what the board showed.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. ./hub add "..." --why "..."
+        2. ...
+  - type: input
+    id: agent
+    attributes:
+      label: Coding agent, if one was involved
+      placeholder: Claude Code, Cursor, Codex, ...
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Output of `node --version`, your OS, and the browser if it is a board problem.
+      placeholder: Node 22.12.0, macOS 15, Safari
+    validations:
+      required: true
+  - type: textarea
+    id: doctor
+    attributes:
+      label: Output of ./hub doctor
+      description: If the problem is with the tool, paste this.
+      render: text

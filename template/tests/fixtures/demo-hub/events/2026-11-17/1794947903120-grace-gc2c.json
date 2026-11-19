@@ -1,0 +1,14 @@
+{
+  "v": 1,
+  "id": "1794947903120-grace-gc2c",
+  "at": "2026-11-17T20:38:23.120Z",
+  "by": "grace",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "item.update",
+  "ref": "t-p50q",
+  "title": "Filters wired to the sample data",
+  "data": {
+    "status": "Filters work, styling next"
+  }
+}

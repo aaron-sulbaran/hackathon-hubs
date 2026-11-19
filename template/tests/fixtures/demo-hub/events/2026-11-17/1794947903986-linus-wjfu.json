@@ -1,0 +1,14 @@
+{
+  "v": 1,
+  "id": "1794947903986-linus-wjfu",
+  "at": "2026-11-17T20:38:23.986Z",
+  "by": "linus",
+  "via": "agent",
+  "agent": "cursor",
+  "type": "decision.propose",
+  "ref": "d-rois",
+  "title": "Run the model on the device",
+  "data": {
+    "why": "No network risk on stage"
+  }
+}

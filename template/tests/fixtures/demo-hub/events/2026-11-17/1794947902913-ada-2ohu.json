@@ -1,0 +1,16 @@
+{
+  "v": 1,
+  "id": "1794947902913-ada-2ohu",
+  "at": "2026-11-17T20:38:22.913Z",
+  "by": "ada",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "item.done",
+  "ref": "t-4frw",
+  "title": "Repo is public, link is on the page",
+  "data": {
+    "links": [
+      "kb/project-repo.md"
+    ]
+  }
+}

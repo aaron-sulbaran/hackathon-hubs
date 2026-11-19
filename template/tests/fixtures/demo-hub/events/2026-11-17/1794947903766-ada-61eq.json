@@ -1,0 +1,14 @@
+{
+  "v": 1,
+  "id": "1794947903766-ada-61eq",
+  "at": "2026-11-17T20:38:23.766Z",
+  "by": "ada",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "question.ask",
+  "ref": "q-7hmz",
+  "title": "Who presents the demo at the expo?",
+  "data": {
+    "for": "team"
+  }
+}

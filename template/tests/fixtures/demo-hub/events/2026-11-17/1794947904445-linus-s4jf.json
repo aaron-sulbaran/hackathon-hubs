@@ -1,0 +1,16 @@
+{
+  "v": 1,
+  "id": "1794947904445-linus-s4jf",
+  "at": "2026-11-17T20:38:24.445Z",
+  "by": "linus",
+  "via": "agent",
+  "agent": "cursor",
+  "type": "session.start",
+  "ref": "s-eulq",
+  "title": "Deploy pipeline",
+  "data": {
+    "focus": "Deploy pipeline",
+    "repo": "project",
+    "branch": "main"
+  }
+}

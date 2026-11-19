@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest a change to the hub, the board, or setup.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem
+      description: What went wrong or took too long, ideally at a real event. Concrete beats general.
+      placeholder: Two agents both picked up the same task because ...
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you would change
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What else you considered
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: Fits the project's rules
+      options:
+        - label: The ./hub tool would still need no npm dependencies.
+        - label: Nothing event-specific would live outside hub.config.json and team.json.

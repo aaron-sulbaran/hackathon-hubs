@@ -1,0 +1,16 @@
+{
+  "v": 1,
+  "id": "1794947904185-grace-z5ih",
+  "at": "2026-11-17T20:38:24.185Z",
+  "by": "grace",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "gate.propose",
+  "ref": "g-hlgm",
+  "title": "Ready: Demo runs end to end",
+  "data": {
+    "evidence": [
+      "Ran it three times on the expo laptop"
+    ]
+  }
+}

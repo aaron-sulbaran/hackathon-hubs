@@ -1,0 +1,31 @@
+{
+  "people": [
+    {
+      "id": "ada",
+      "name": "Ada Example",
+      "focus": "Product and frontend",
+      "github": "",
+      "githubId": null,
+      "commitEmail": "",
+      "emails": []
+    },
+    {
+      "id": "grace",
+      "name": "Grace Example",
+      "focus": "Backend and data",
+      "github": "",
+      "githubId": null,
+      "commitEmail": "",
+      "emails": []
+    },
+    {
+      "id": "linus",
+      "name": "Linus Example",
+      "focus": "Hardware and infrastructure",
+      "github": "",
+      "githubId": null,
+      "commitEmail": "",
+      "emails": []
+    }
+  ]
+}

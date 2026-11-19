@@ -1,0 +1,15 @@
+{
+  "v": 1,
+  "id": "1794947902968-grace-d4vg",
+  "at": "2026-11-17T20:38:22.968Z",
+  "by": "grace",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "item.add",
+  "ref": "t-p50q",
+  "title": "Search page with filters",
+  "data": {
+    "why": "The demo opens on it",
+    "lane": "up_next"
+  }
+}

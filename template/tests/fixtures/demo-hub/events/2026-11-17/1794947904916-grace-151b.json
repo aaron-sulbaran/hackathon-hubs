@@ -1,0 +1,22 @@
+{
+  "v": 1,
+  "id": "1794947904916-grace-151b",
+  "at": "2026-11-17T20:38:24.916Z",
+  "by": "grace",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "pulse",
+  "title": "Filters on the search page",
+  "data": {
+    "repo": "project",
+    "branch": "grace/search-filters",
+    "pushed": false,
+    "ahead": 0,
+    "behind": 0,
+    "files": [
+      "app/page.tsx"
+    ],
+    "item": "t-p50q",
+    "note": "Filters on the search page"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "v": 1,
+  "id": "1794947904583-ada-z23e",
+  "at": "2026-11-17T20:38:24.583Z",
+  "by": "ada",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "kb.update",
+  "title": "Marked the chosen idea",
+  "data": {
+    "page": "kb/ideas",
+    "change": "new"
+  }
+}

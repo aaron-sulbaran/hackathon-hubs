@@ -1,0 +1,17 @@
+{
+  "v": 1,
+  "id": "1794947903830-ada-uo1d",
+  "at": "2026-11-17T20:38:23.830Z",
+  "by": "ada",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "decision.propose",
+  "ref": "d-tubo",
+  "title": "Use Next.js for the product",
+  "data": {
+    "why": "Everyone has shipped with it",
+    "affects": [
+      "kb/ideas"
+    ]
+  }
+}

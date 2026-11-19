@@ -1,0 +1,4 @@
+# Copied from the repo by `prepack` and removed by `postpack`; edit the originals.
+/template/
+/LICENSE
+*.tgz

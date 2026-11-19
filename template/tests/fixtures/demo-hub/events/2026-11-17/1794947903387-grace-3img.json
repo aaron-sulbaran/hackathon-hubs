@@ -1,0 +1,16 @@
+{
+  "v": 1,
+  "id": "1794947903387-grace-3img",
+  "at": "2026-11-17T20:38:23.387Z",
+  "by": "grace",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "note",
+  "ref": "t-p50q",
+  "title": "Started the search page on grace/search-filters",
+  "data": {
+    "files": [
+      "app/page.tsx"
+    ]
+  }
+}

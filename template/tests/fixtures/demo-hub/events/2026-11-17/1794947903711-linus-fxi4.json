@@ -1,0 +1,14 @@
+{
+  "v": 1,
+  "id": "1794947903711-linus-fxi4",
+  "at": "2026-11-17T20:38:23.711Z",
+  "by": "linus",
+  "via": "agent",
+  "agent": "cursor",
+  "type": "question.ask",
+  "ref": "q-w0rs",
+  "title": "Mentor question: what do judges want to see in the first minute?",
+  "data": {
+    "for": "team"
+  }
+}

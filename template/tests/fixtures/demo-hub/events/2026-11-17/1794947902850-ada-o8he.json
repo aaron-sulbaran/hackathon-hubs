@@ -1,0 +1,16 @@
+{
+  "v": 1,
+  "id": "1794947902850-ada-o8he",
+  "at": "2026-11-17T20:38:22.850Z",
+  "by": "ada",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "item.add",
+  "ref": "t-4frw",
+  "title": "Create the project repo and link it in kb/project-repo.md",
+  "data": {
+    "why": "Agents need one place for the code",
+    "owner": "ada",
+    "lane": "in_flight"
+  }
+}

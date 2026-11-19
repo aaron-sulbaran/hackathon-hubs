@@ -1,0 +1,4 @@
+#!/bin/sh
+# Run the hub CLI: ./hub <command> from the hub folder, or <path-to-hub>/hub from anywhere.
+HERE=$(cd "$(dirname "$0")" && pwd -P)
+exec node "$HERE/scripts/hub.mjs" "$@"

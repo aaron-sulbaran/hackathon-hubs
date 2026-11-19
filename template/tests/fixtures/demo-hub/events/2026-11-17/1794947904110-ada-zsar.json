@@ -1,0 +1,17 @@
+{
+  "v": 1,
+  "id": "1794947904110-ada-zsar",
+  "at": "2026-11-17T20:38:24.110Z",
+  "by": "ada",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "gate.add",
+  "ref": "g-hlgm",
+  "title": "Demo runs end to end",
+  "data": {
+    "criteria": [
+      "One full journey with no reload"
+    ],
+    "due": "2027-01-16T20:00-05:00"
+  }
+}

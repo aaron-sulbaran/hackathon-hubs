@@ -1,0 +1,16 @@
+{
+  "v": 1,
+  "id": "1794947902797-ada-ok5a",
+  "at": "2026-11-17T20:38:22.797Z",
+  "by": "ada",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "item.add",
+  "ref": "t-ofur",
+  "title": "Pick the idea and the tracks",
+  "data": {
+    "why": "Everything else waits on it",
+    "due": "2027-01-15T22:00-05:00",
+    "area": "now"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "v": 1,
+  "event": {
+    "name": "Sample Hackathon",
+    "slug": "sample-hackathon",
+    "timezone": "America/New_York",
+    "startsAt": "2027-01-15T20:00:00-05:00",
+    "submitBy": "2027-01-17T09:00:00-05:00",
+    "location": "Main hall",
+    "url": "https://example.com/sample-hackathon"
+  },
+  "hub": {
+    "repo": "",
+    "basePath": "",
+    "owner": "ada"
+  }
+}

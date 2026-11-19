@@ -1,0 +1,14 @@
+{
+  "v": 1,
+  "id": "1794947903040-grace-449q",
+  "at": "2026-11-17T20:38:23.040Z",
+  "by": "grace",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "item.claim",
+  "ref": "t-p50q",
+  "title": "Search page with filters",
+  "data": {
+    "why": "I have the data model in my head"
+  }
+}

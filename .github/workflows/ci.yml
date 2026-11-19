@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  template:
+    name: Template checks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: template
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+        with:
+          package_json_file: template/package.json
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: template/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm test:all
+      - run: pnpm build
+
+  scaffolder:
+    name: Scaffolder tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: node --test "packages/create-hackathon-hub/test/*.test.mjs"
+
+  scrub:
+    name: Scrub check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: node --test scripts/scrub-check.test.mjs
+      # Built-in checks only: the private terms file never leaves the maintainer's machine.
+      - run: node scripts/scrub-check.mjs --tracked
+
+  smoke:
+    name: Scaffold, install, build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+        with:
+          package_json_file: template/package.json
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Scaffold a hub without touching GitHub or Vercel
+        run: node packages/create-hackathon-hub/index.mjs "$RUNNER_TEMP/smoke-hub" --no-setup --no-git
+      - name: Install
+        working-directory: ${{ runner.temp }}/smoke-hub
+        run: pnpm install
+      - name: Build
+        working-directory: ${{ runner.temp }}/smoke-hub
+        run: pnpm build
+      - name: The hub tool answers
+        working-directory: ${{ runner.temp }}/smoke-hub
+        run: ./hub help
+      - name: Setup plans a hub without touching GitHub or Vercel
+        working-directory: ${{ runner.temp }}/smoke-hub
+        run: ./hub setup --dry-run --yes --skip-github --skip-vercel --skip-tokens --name "Smoke Test" --person "name=Ada Example;id=ada" --person "name=Grace Example;id=grace" < /dev/null

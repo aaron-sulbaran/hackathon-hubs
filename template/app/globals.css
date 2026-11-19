@@ -1,0 +1,278 @@
+@import "tailwindcss";
+
+/*
+ * Tokens: warm paper, navy ink, and pastel pink, peach and sky accents.
+ * Light is "paper", dark is "night flight". Everything else in the app refers
+ * to these names, so a swap is one edit here. See docs/design.md.
+ */
+:root {
+  color-scheme: light dark;
+  --wash: #f3eee9;
+  --card: #fffcf8;
+  --card-flat: #f7f1ea;
+  --divider: #e4dad0;
+  --hairline: rgb(38 52 91 / 0.12);
+  --ink: #26345b;
+  --ink-2: #565e80;
+  --primary: #334169;
+  --on-primary: #fffcf8;
+  --link: #3e5ba0;
+  --tint: #e5eefb;
+  --button-2: #ece4db;
+  --hover: rgb(38 52 91 / 0.06);
+  --rose: #9c4a59;
+  --board: var(--card);
+  --board-tile: #26345b;
+  --board-tile-ink: #f7e3c4;
+  --board-ink: var(--ink);
+  --board-ink-2: var(--ink-2);
+  --board-rule: var(--divider);
+  --node-edge: #334169;
+  --g-rules: #e7aab4;
+  --g-tracks: #f2c89d;
+  --g-ideas: #a9c9ee;
+  --g-team: #bcd9c6;
+  --g-logistics: #f3da97;
+  --halo-opacity: 0.24;
+  --shadow-card: 0 0 0 1px var(--hairline), 0 1px 2px rgb(38 52 91 / 0.05);
+  --shadow-float: 0 0 0 1px var(--hairline), 0 18px 40px -12px rgb(38 52 91 / 0.3);
+  --scrim: rgb(243 238 233 / 0.8);
+  --ease-enter: cubic-bezier(0.14, 1, 0.34, 1);
+  --ease-exit: cubic-bezier(0.45, 0.1, 0.2, 1);
+  --ease-move: cubic-bezier(0.17, 0.17, 0, 1);
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --wash: #121829;
+    --card: #1a2238;
+    --card-flat: #232c47;
+    --divider: #323c5c;
+    --hairline: rgb(243 238 233 / 0.1);
+    --ink: #f3eee9;
+    --ink-2: #b3bad3;
+    --primary: #a8c4f0;
+    --on-primary: #121829;
+    --link: #a8c4f0;
+    --tint: #26355c;
+    --button-2: #2a3454;
+    --hover: rgb(243 238 233 / 0.07);
+    --rose: #e9a6b1;
+    --board: #0d1220;
+    --board-tile: #1c2540;
+    --board-tile-ink: #f2c89d;
+    --board-ink: #f3eee9;
+    --board-ink-2: #b3bad3;
+    --board-rule: rgb(243 238 233 / 0.1);
+    --node-edge: #1a2238;
+    --halo-opacity: 0.1;
+    --shadow-card: 0 0 0 1px var(--hairline);
+    --shadow-float: 0 0 0 1px var(--hairline), 0 18px 40px -12px rgb(0 0 0 / 0.6);
+    --scrim: rgb(0 0 0 / 0.6);
+  }
+}
+
+@theme inline {
+  --color-wash: var(--wash);
+  --color-card: var(--card);
+  --color-card-flat: var(--card-flat);
+  --color-divider: var(--divider);
+  --color-hairline: var(--hairline);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-link: var(--link);
+  --color-tint: var(--tint);
+  --color-button-2: var(--button-2);
+  --color-hover: var(--hover);
+  --color-rose: var(--rose);
+  --color-board: var(--board);
+  --color-board-tile: var(--board-tile);
+  --color-board-ink: var(--board-ink);
+  --color-board-ink-2: var(--board-ink-2);
+  --color-board-tile-ink: var(--board-tile-ink);
+  --color-board-rule: var(--board-rule);
+
+  --font-sans: var(--font-lexend), system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+
+  --radius-card: 14px;
+  --radius-control: 10px;
+  --shadow-card: var(--shadow-card);
+  --shadow-float: var(--shadow-float);
+
+  --animate-card-in: card-in 420ms var(--ease-enter) both;
+  --animate-pop-in: pop-in 320ms var(--ease-pop) both;
+  --animate-fade-in: fade-in 200ms var(--ease-enter) both;
+  --animate-sheet-up: sheet-up 380ms var(--ease-enter) both;
+  --animate-sheet-left: sheet-left 380ms var(--ease-enter) both;
+  --animate-working: working 2.4s ease-in-out infinite;
+  --animate-flap: flap 220ms var(--ease-exit) both;
+}
+
+html {
+  background: var(--wash);
+}
+
+body {
+  background: var(--wash);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:where(a, button, summary, input, textarea, select, [role="button"], [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.6); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* The map's swarm: on first paint each node leaves the index and settles in its area. */
+@keyframes swarm-in {
+  from { transform: translate(var(--dx), var(--dy)); opacity: 0; }
+  35% { opacity: 1; }
+  to { transform: translate(0, 0); opacity: 1; }
+}
+/* Entrances are visible at rest. They run only while <html data-entrance> is
+   set: an inline script in app/layout.tsx sets it before the first paint when
+   the tab is visible and motion is allowed, and clears it after 2.4s or when
+   the tab is hidden. A stalled or skipped animation never hides content. */
+:root[data-entrance] .swarm-in { animation: swarm-in 760ms var(--ease-enter) both; }
+:root[data-entrance] .reveal-in { animation: reveal 900ms var(--ease-enter) both; }
+
+/* The greeting writes itself in, left to right, once. */
+@keyframes reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* A departure digit that changes turns down once. */
+@keyframes flap {
+  from { transform: perspective(240px) rotateX(-70deg); opacity: 0.4; }
+  to { transform: perspective(240px) rotateX(0); opacity: 1; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes sheet-up {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes sheet-left {
+  from { transform: translateX(32px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* An active agent session: the presence ring breathes. */
+@keyframes working {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--primary) 35%, transparent); }
+  50% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 0%, transparent); }
+}
+
+/* A new post opens space for itself before it fades in, so nothing below jumps. */
+@keyframes feed-grow {
+  from { grid-template-rows: 0fr; }
+  to { grid-template-rows: 1fr; }
+}
+.feed-enter {
+  display: grid;
+  animation: feed-grow 360ms var(--ease-move) both;
+}
+.feed-enter > * {
+  min-height: 0;
+  animation: card-in 420ms var(--ease-enter) 120ms both;
+}
+
+/* SVG parts scale and draw around their own center. */
+svg .animate-pop-in, svg.animate-pop-in { transform-box: fill-box; transform-origin: center; }
+
+/* The done check draws itself: ring, then tick. Paths use pathLength="1". */
+@keyframes check-draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+.check-ring { stroke-dasharray: 1; animation: check-draw 180ms var(--ease-enter) both; }
+.check-tick { stroke-dasharray: 1; animation: check-draw 260ms var(--ease-enter) 160ms both; }
+
+/* Markdown from kb pages and events. */
+.prose-hub { line-height: 1.5; overflow-wrap: anywhere; }
+.prose-hub > * + * { margin-top: 0.6em; }
+.prose-hub h1 { font-size: 1.5rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+.prose-hub h2 { font-size: 1.15rem; font-weight: 700; margin-top: 1.2em; color: var(--ink); }
+.prose-hub h3 { font-size: 1rem; font-weight: 600; margin-top: 1em; }
+.prose-hub a { color: var(--link); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--link) 35%, transparent); text-underline-offset: 3px; }
+.prose-hub a:hover { text-decoration-color: currentColor; }
+.prose-hub ul { list-style: disc; padding-left: 1.25rem; }
+.prose-hub ol { list-style: decimal; padding-left: 1.25rem; }
+.prose-hub li + li { margin-top: 0.25em; }
+.prose-hub code { background: var(--card-flat); border-radius: 4px; padding: 0.1em 0.35em; font-size: 0.9em; }
+.prose-hub pre { background: var(--card-flat); border-radius: 10px; padding: 0.75rem; overflow-x: auto; font-size: 0.85em; }
+.prose-hub pre code { background: none; padding: 0; }
+.prose-hub blockquote { border-left: 3px solid var(--divider); padding-left: 0.75rem; color: var(--ink-2); }
+.prose-hub table { border-collapse: collapse; display: block; max-width: 100%; overflow-x: auto; overflow-wrap: normal; word-break: normal; -webkit-overflow-scrolling: touch; }
+.prose-hub th, .prose-hub td { border: 1px solid var(--divider); padding: 0.4rem 0.6rem; text-align: left; vertical-align: top; min-width: 7.5rem; overflow-wrap: normal; hyphens: none; }
+.prose-hub th { background: var(--card-flat); font-weight: 600; }
+.prose-hub td .ref-chip { white-space: nowrap; }
+.prose-hub hr { border: 0; border-top: 1px solid var(--divider); }
+.prose-hub .ref-chip {
+  display: inline-block;
+  background: var(--tint);
+  color: var(--primary);
+  border-radius: 999px;
+  padding: 0 0.45em;
+  font-weight: 600;
+  font-size: 0.92em;
+}
+.prose-hub .mention { color: var(--link); font-weight: 600; }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* Under reduced motion every entrance is a short fade and nothing loops. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 120ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 120ms !important;
+    scroll-behavior: auto !important;
+  }
+  .check-ring, .check-tick { animation: none !important; stroke-dashoffset: 0; }
+  .swarm-in, .reveal-in { animation: none !important; }
+  @keyframes card-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes pop-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes sheet-up { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes sheet-left { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes feed-grow { from { grid-template-rows: 1fr; } to { grid-template-rows: 1fr; } }
+  @keyframes working { from { box-shadow: none; } to { box-shadow: none; } }
+  @keyframes flap { from { opacity: 1; } to { opacity: 1; } }
+  @keyframes reveal { from { clip-path: none; } to { clip-path: none; } }
+}
+
+/* A link to #q-xxxx lands on that card and marks it briefly. */
+@keyframes target-mark {
+  from { box-shadow: 0 0 0 3px var(--primary); }
+  to { box-shadow: var(--shadow-card); }
+}
+:target { scroll-margin-top: 72px; animation: target-mark 1.6s var(--ease-exit) both; }
+
+/* Design review images: full card width, natural aspect, never cropped, with a
+   1px inset outline so a white screenshot still shows its edge. */
+.prose-hub .design-image { display: block; margin-inline: -1rem; }
+.prose-hub .design-image img { display: block; width: 100%; height: auto; outline: 1px solid var(--hairline); outline-offset: -1px; }
+@media (min-width: 640px) { .prose-hub .design-image { margin-inline: 0; } .prose-hub .design-image img { border-radius: 10px; } }

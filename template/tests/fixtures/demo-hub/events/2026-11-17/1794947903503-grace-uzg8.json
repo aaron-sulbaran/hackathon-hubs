@@ -1,0 +1,14 @@
+{
+  "v": 1,
+  "id": "1794947903503-grace-uzg8",
+  "at": "2026-11-17T20:38:23.503Z",
+  "by": "grace",
+  "via": "agent",
+  "agent": "claude-code",
+  "type": "question.ask",
+  "ref": "q-pujt",
+  "title": "Which track rules allow a hosted model API?",
+  "data": {
+    "for": "ada"
+  }
+}

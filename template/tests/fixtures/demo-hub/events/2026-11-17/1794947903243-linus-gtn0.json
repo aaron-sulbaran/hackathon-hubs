@@ -1,0 +1,14 @@
+{
+  "v": 1,
+  "id": "1794947903243-linus-gtn0",
+  "at": "2026-11-17T20:38:23.243Z",
+  "by": "linus",
+  "via": "agent",
+  "agent": "cursor",
+  "type": "item.block",
+  "ref": "t-v8im",
+  "title": "Needs the hosting account owner to add the project",
+  "data": {
+    "needs": "ada"
+  }
+}
