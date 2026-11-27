@@ -51,7 +51,7 @@ The maintainer's global rules apply. None specific to this repo yet.
 
 ## Tooling and agents
 
-- The lead session stays on Fable and orchestrates; it does not do the work itself. Basic work goes to Opus or Sonnet subagents. Long running work, and work the owner will want to steer directly, goes to worktrees.
+- The lead session orchestrates, on Opus since 2026-11-26 (the owner's choice); it does not do the work itself. Basic work goes to Opus or Sonnet subagents. Long running work, and work the owner will want to steer directly, goes to worktrees.
 
 ## Commands
 
@@ -62,26 +62,27 @@ None that differ from the obvious yet.
 ## Invariants
 
 - `template/` is the hub a team receives. It must run on its own: its own `package.json` and lockfile, never a workspace member, no imports from outside `template/`.
-- Everything specific to an event lives in `template/hub.config.json`; everyone on the team lives in `template/team.json`. `template/lib/hub/config.mjs` reads and validates the config. Hard-coding an event name, date, time zone, base path, or repo anywhere else brings back the problem this repo exists to remove.
-- `template/lib/hub/*.mjs` and everything under `template/scripts/` import Node built-ins only. Teammates run `./hub` right after cloning, before any install. The same holds for the root `scripts/`.
-- `template/vercel.json` turns off deploys from git pushes. A hub makes about 1,000 small commits a day and Vercel's free plan allows 100 deployments a day. Deploys are `vercel deploy --prod`, which `./hub setup --deploy` runs.
+- Everything specific to an event lives in `template/hub.config.json`; everyone on the team lives in `template/team.json`. `template/lib/hub/config.mjs` reads and validates the config. Hard-coding an event name, date, time zone, base path, or repo elsewhere brings back the problem this repo removes.
+- `template/lib/hub/*.mjs` and everything under `template/scripts/` import Node built-ins only. Teammates run `./hub` before any install. Root `scripts/` is the same.
+- `template/vercel.json` turns off deploys from git pushes. A hub makes about 1,000 commits a day; Vercel's free plan allows 100 deployments. Deploys are `vercel deploy --prod`, which `./hub setup --deploy` runs.
 - Setup hands secrets to child processes on stdin only: never argv, output, a commit, or a tracked file. `template/tests/hub/setup-test.mjs` asserts it.
 
 ## Gotchas
 
-- `.private/` is gitignored, local to the maintainer, and never committed.
-- `scripts/scrub-check.mjs` is the scrub check (`--tracked`, or `--pre-push` from `.githooks/pre-push`). Its private terms file is `$SCRUB_TERMS`, else `.private/scrub-terms.txt` in the main worktree, so it works from a linked worktree; `!` lines are allowed terms. CI runs the built-in checks only. A `scrub-check: allow` line skips them. Pre-push checks emails (noreply only), ref names, and every commit against each parent, binaries included; a file over 5 MB needs `SCRUB_ALLOW_LARGE`. What it cannot vouch for exits 2 (`git fetch` first).
-- The machine's global git email may not be a noreply address. In a fresh clone, run `git config user.email <login>@users.noreply.github.com` (the login-only form; the private terms block the numeric-id form) and `git config core.hooksPath .githooks` before the first commit. Both are local settings that linked worktrees share.
-- `packages/create-hackathon-hub/template/` is a copy of `template/` made at pack time, gitignored and removed after packing. Never edit it. Packing needs a git checkout: it bundles only the files git tracks in `template/`, plus the root LICENSE.
+- `.private/` is gitignored and local to the maintainer.
+- `scripts/scrub-check.mjs` is the scrub check (`--tracked`, or `--pre-push` from `.githooks/pre-push`). Its private terms file is `$SCRUB_TERMS`, else `.private/scrub-terms.txt` in the main worktree; `!` lines are allowed terms. CI runs the built-in checks only. A `scrub-check: allow` line skips them. Pre-push checks emails (noreply only), ref names, and every commit against each parent, binaries included; a file over 5 MB needs `SCRUB_ALLOW_LARGE`. What it cannot vouch for exits 2 (`git fetch` first).
+- The global git email may not be noreply. In a fresh clone, run `git config user.email <login>@users.noreply.github.com` (the login-only form; the private terms block the numeric-id form) and `git config core.hooksPath .githooks` before the first commit. Linked worktrees share both.
+- `packages/create-hackathon-hub/template/` is a copy of `template/` made at pack time, gitignored and removed after packing. Never edit it. Packing needs a git checkout: it bundles only tracked `template/` files, plus the root LICENSE.
 - After routes move, a stale `template/.next` breaks `pnpm typecheck` with missing-module errors. Delete `template/.next` and rerun.
-- Every board page that shows team data lives under `template/app/(hub)/`, whose layout checks the unlock cookie. A route handler that serves team data calls `requestAllowed` from `lib/web/gate.ts`. The root layout and the 404 page carry no team data.
-- The shipped Claude Code hooks and `pulse --auto` act only in a real hub (`hub.repo` set, the folder is its own git repo, origin matches). Inside this repo they do nothing, by design.
+- Every board page that shows team data lives under `template/app/(hub)/`, whose layout checks the unlock cookie. A route handler that serves team data calls `requestAllowed` from `lib/web/gate.ts`. The root layout and 404 page carry none.
+- The shipped Claude Code hooks and `pulse --auto` act only in a real hub (`hub.repo` set, its own git repo, origin matches); here they do nothing, by design.
+- Pull requests merge by fast-forward from a local clone (`git switch main`, `git merge --ff-only <branch>`, `git push origin main` through the hook); GitHub records them as merged. The merge button writes a commit under whatever email the account settings pick: do not use it.
 - Worktree agents are cut from `origin/main`, not local main. Push main before dispatching one, or tell it to reset to main first.
 - Never run `./hub setup` or the scaffolder here without `--dry-run`, or `--skip-github --skip-vercel --skip-tokens`. With `gh` and `vercel` logged in, a plain run creates a real repo and a real deploy.
-- Setup has run once for real (gh 2.103, Vercel CLI 65.2, a one-person team) against a test hub kept outside the tracked files: repo, project, deploy, board check, and a rerun that changed nothing all worked. Still unproven for real: invites to other people, `--tokens`, and a machine where git has no GitHub credential helper.
-- Setup prints the unlock link only on a terminal without `--yes`. Otherwise (a coding agent, a pipe, a log) it writes the link to the gitignored 0600 `.hub-owner.local` and prints only where it is; `--print-link` forces printing. Tests that need the printed link pass `--print-link`.
+- Setup has run once for real (gh 2.103, Vercel CLI 65.2, a one-person team) against an untracked test hub: repo, project, deploy, board check, and a no-change rerun all worked. Still unproven for real: invites to other people, `--tokens`, and a machine where git has no GitHub credential helper.
+- Setup prints the unlock link only on a terminal without `--yes`. Otherwise (agent, pipe, log) it writes the link to the gitignored 0600 `.hub-owner.local` and prints only that path; `--print-link` forces printing. Tests that need the printed link pass `--print-link`.
 - The board reads `hub.basePath`, `event.timezone`, and the repo fallback at build time (`template/next.config.ts`), so changing them needs a redeploy. Names and dates are read at run time.
-- `template/docs/agent-prompt.md` is generated from `docs/agent-prompt.template.md` by setup. Edit the template; a test fails when the committed render drifts from the shipped config.
+- `template/docs/agent-prompt.md` is generated from `docs/agent-prompt.template.md` by setup. Edit the template; a test fails if the committed render drifts from the config.
 - `next dev` rewrites a block it manages inside `template/AGENTS.md`, between the `nextjs-agent-rules` markers. Leave it alone; its em dashes are Next's.
 
 ## Run and deploy
@@ -104,4 +105,4 @@ None that differ from the obvious yet.
 - `docs/` playbook and how it works
 - `.github/` CI and issue forms
 
-Last verified: 2026-11-18, at the first public commit
+Last verified: 2026-11-26 at 881b29f
