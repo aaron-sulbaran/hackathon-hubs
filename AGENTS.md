@@ -32,8 +32,8 @@ Claude Code loads this file into every session in this repo, subagents included,
 
 # Layer 1: Rules (the owner's)
 
-Stage: sketch (set 2026-11-17, the default for a new project)
-Speed first. Short branches or main. Tests for logic that would be painful to debug. Browser check before "done". Review effort only on the risky parts.
+Stage: pilot (set 2026-11-26, the repo is public)
+A PR per change with CI green before merge. Second-model review on anything touching auth, money, personal data, migrations, or permissions. Migrations reviewed before they apply, with a way back. Errors reach the owner (monitoring, or logs someone reads daily). A written rollback, and a way to delete one user's data. Never test against real users' data.
 
 ## Stack
 
